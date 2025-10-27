@@ -20,13 +20,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize data only, not widgets using context
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Safe to build widgets with context here
     _pages = [
       _buildHomePage(),
       const PlaylistScreen(),
@@ -86,9 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // -----------------------------
-  // Build the Home Page
-  // -----------------------------
   Widget _buildHomePage() {
     return SafeArea(
       child: CustomScrollView(
@@ -219,9 +214,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // -----------------------------
-  // Build the Library Page
-  // -----------------------------
   Widget _buildLibraryPage() {
     return SafeArea(
       child: Padding(
