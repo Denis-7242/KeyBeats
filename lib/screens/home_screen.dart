@@ -1,4 +1,3 @@
-// lib/screens/home_screen.dart
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../models/song_model.dart';
@@ -16,13 +15,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Song> _songs = MockData.getSongs();
-  
-  // Pages for bottom navigation
-  late final List<Widget> _pages;
+  late List<Widget> _pages;
 
   @override
   void initState() {
     super.initState();
+    // Initialize data only, not widgets using context
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Safe to build widgets with context here
     _pages = [
       _buildHomePage(),
       const PlaylistScreen(),
@@ -82,11 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // -----------------------------
+  // Build the Home Page
+  // -----------------------------
   Widget _buildHomePage() {
     return SafeArea(
       child: CustomScrollView(
         slivers: [
-          // App bar with logo
           SliverAppBar(
             floating: true,
             backgroundColor: Colors.transparent,
@@ -135,7 +141,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // Greeting section
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -156,7 +161,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // Recently played section
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -169,7 +173,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // Song list
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             sliver: SliverList(
@@ -184,10 +187,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (context, animation, secondaryAnimation) =>
-                                NowPlayingScreen(song: song),
-                            transitionsBuilder:
-                                (context, animation, secondaryAnimation, child) {
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    NowPlayingScreen(song: song),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
                               return SlideTransition(
                                 position: Tween<Offset>(
                                   begin: const Offset(0, 1),
@@ -215,6 +219,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // -----------------------------
+  // Build the Library Page
+  // -----------------------------
   Widget _buildLibraryPage() {
     return SafeArea(
       child: Padding(
@@ -283,6 +290,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // -----------------------------
+  // Greeting Function
+  // -----------------------------
   String _getGreeting() {
     final hour = DateTime.now().hour;
     if (hour < 12) return 'Morning';
