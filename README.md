@@ -150,19 +150,3 @@ Edit `lib/theme/app_theme.dart` to customize the color palette:
 static const Color accentPurple = Color(0xFFYourColor);
 
 
-### 🙌 Author
-- **Denis** — [GitHub: Denis-7242](https://github.com/Denis-7242)
-
-If this project helped you, consider starring the repo!
-
----
-
-### 📄 Notes
-- Built with Flutter and Dart using a soft, accessible dark theme.
-- Designed with maintainable components and a simple model-driven flow.
-
----
-
-### ❤️ Footer
-made with love ❤️ by Denis
-
