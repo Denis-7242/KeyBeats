@@ -290,9 +290,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // -----------------------------
-  // Greeting Function
-  // -----------------------------
   String _getGreeting() {
     final hour = DateTime.now().hour;
     if (hour < 12) return 'Morning';
